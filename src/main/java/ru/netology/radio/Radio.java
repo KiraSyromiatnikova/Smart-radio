@@ -11,7 +11,7 @@ public class Radio {
 
 
     public int changeTheStationByRemoteControl(int intendedStation) {
-        if (intendedStation <= 9 && intendedStation >= 0) {
+        if (intendedStation <= maxRadioStation && intendedStation >= minRadioStation) {
             currentRadioStation = intendedStation;
         }
         return currentRadioStation;
@@ -20,7 +20,7 @@ public class Radio {
 
     public void changeTheStationByNextButton() {
         if (currentRadioStation == maxRadioStation) {
-            currentRadioStation = 0;
+            currentRadioStation = minRadioStation;
         } else {
             currentRadioStation += 1;
         }
@@ -28,7 +28,7 @@ public class Radio {
 
     public void changeTheStationByPrevButton() {
         if (currentRadioStation == minRadioStation) {
-            currentRadioStation = 9;
+            currentRadioStation = maxRadioStation;
         } else {
             currentRadioStation -= 1;
         }
@@ -55,6 +55,12 @@ public class Radio {
     }
 
     public void setCurrentVolume(int currentVolume) {
+        if(currentVolume > maxVolume) {
+            return;
+        }
+        if(currentVolume < minVolume) {
+            return;
+        }
         this.currentVolume = currentVolume;
     }
 
@@ -63,6 +69,12 @@ public class Radio {
     }
 
     public void setCurrentRadioStation(int currentRadioStation) {
+        if(currentRadioStation > maxRadioStation) {
+            return;
+        }
+        if(currentRadioStation < minRadioStation) {
+            return;
+        }
         this.currentRadioStation = currentRadioStation;
     }
 }
